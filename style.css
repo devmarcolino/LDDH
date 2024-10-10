@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* configuracao pagina */
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+.title {
+    color: #A40043;
+}
+
+.subtitle {
+    color: #A40043;
+}
+
+/* cabeçalho visual */
+
+header {
+    display: flex;
+    background: #F9EFF3;
+    justify-content: space-between;
+    padding: 1.3rem 5rem;
+    text-align: center;
+    min-height: 70px;
+    max-height: 5rem;
+    width: 100%;
+}
+
+header nav {
+    padding: 10px; 
+}
+
+.nav-list {
+    align-items: center;
+    display: flex;
+}
+
+.nav-list ul {
+    list-style: none;
+    display: flex;
+    gap: 48px;
+    
+}
+
+
+
+.nav-list ul li a {
+    text-decoration: none;
+}
+
+
+.nav-item a{
+    text-decoration: none;
+    color: #A40043;
+}
+
+.nav-item a:hover{
+    font-weight: 500;
+}
+
+
+.nav-item-a a {
+    padding: 12px 20px;
+    background-color: #A40043;
+    color: #fff;
+    border-radius: 90px;
+}
+
+.nav-item-a a:hover {
+    padding: 12px 20px;
+    outline:1px solid #A40043;
+    background: transparent;
+    color:#A40043;
+    border-radius: 90px;
+}
+
+/* responsive menu config */
+
+.mobile-menu-icon {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* responsivo */
+@media screen and (max-width: 768px) {
+    header {
+        padding: .2rem 2rem;
+        max-height: 3rem;
+        justify-content: none;
+    }
+
+    header h1 {
+        font-size: 12pt;
+        align-items: center;
+        margin-top: 1.4rem;
+    }
+
+    .nav-item{
+        display: none;
+    }
+
+    .nav-item-a{
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .mobile-menu-icon button {
+        border: none;
+        background: transparent;  
+        cursor: pointer;
+        right: 20px;
+        position:absolute;
+    }
+    
+
+    .mobile-menu ul {
+        display: flex;
+        position: absolute;
+        text-align: center;
+        flex-direction: column;
+        top: 4rem;
+        background-color: #F9EFF3;
+        width: 100%;
+        right: 0rem;
+        height: 17rem;
+        padding-top: 1rem;
+    }
+
+    .mobile-menu .nav-list .nav-item{
+        display: block;
+    }
+
+    .mobile-menu .nav-list .nav-item-a {
+        display: block;
+    }
+
+    .mobile-menu .nav-item-a a {
+        padding: 12px 70px;
+    }
+
+    .mobile-menu {
+        visibility: hidden;
+        overflow-y: hidden;
+        
+        transition: all .2s;
+        
+    }
+
+    .open{
+        display: block;
+        visibility: visible;
+        overflow-y: auto;
+      
+    }
+}
