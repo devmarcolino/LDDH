@@ -1,0 +1,24 @@
+@media screen and (max-width: 768px) {
+    header {
+        padding: 2rem 1.5rem .5rem 1.5rem;
+    }
+
+    .logo img {
+        height: 38px;
+        width: 38px;
+    }
+
+    .logo h1 {
+        font-size: 18pt;
+    }
+
+    .register {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+
+    .login {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --primaryColor: #A40043;
+    --secundaryColor: #CE769A;
+    --terciaryColor: #E0AAC0;
+    --quarteryColor: #EED0DC;
+    --bgColor: #F9EFF3;
+    --outGray: #c5baba;
+    --elvShadow: 0px 4px 0px 0px;
+    --pressShadow: 0 2.5px 0px 0px;
+    --shadowPrimary: #64002a;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+.title {
+    color: var(--primaryColor);
+}
+
+.subtitle {
+    color: var(--primaryColor);
+    font-weight: 400;
+}
+
+.content-text {
+    color: var(--secundaryColor); 
+}
+
+
+/* fim configs */
+
+/* header */
+
+header {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding: 2rem 2rem;
+}
+
+.logo a{
+    display: flex;
+    gap: .9rem;
+    text-decoration: none;
+}
+
+/* conteudo */
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid var(--bgColor);
+    border-radius: 12px;
+    width: 25rem;
+    justify-content: center;
+
+    img {
+        margin-right: 2rem;
+    }
+}
+
+.cart-info {
+    background-color: var(--bgColor);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.item-name {
+    font-size:15pt;
+    font-weight: 300;
+}
+
+.item-price {
+    color: var(--primaryColor);
+    font-weight: 600;
+    font-size: 13pt;
+}
+
+.btn{
+    padding: 9px 16px;
+    background-color: var(--primaryColor);
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-size: 12pt;
+    cursor: pointer;
+    width: 9rem;
+    margin: 2rem 0rem 1rem 0rem;
+    box-shadow: var(--pressShadow) var(--shadowPrimary);
+    text-decoration: none;
+}
+
+.btn:hover {
+    border:1px solid var(--outGray);
+    background: transparent;
+    color: var(--primaryColor);
+    box-shadow: var(--elvShadow) var(--outGray);
+    transition: .2s all;
+    outline: none;
+}
+
+.btn:active {
+    border:1px solid var(--outGray);
+    box-shadow: var(--pressShadow) var(--outGray);
+    transition: .2s all;
+}
+
+#btn-prod{
+    background-color: transparent;
+    color: var(--primaryColor);
+    border-radius: 8px;
+    border: 1px solid var(--outGray);
+    font-weight: 300;
+    box-shadow: var(--pressShadow) var(--outGray);
+}
+
+#btn-prod:hover {
+    border:1px solid var(--primaryColor);
+    box-shadow: var(--elvShadow) var(--primaryColor);
+    outline: none;
+}
+
+#btn-prod:active {
+    border:1px solid var(--primaryColor);
+    box-shadow: var(--pressShadow) var(--primaryColor);
+}
+
+.price-qnt {
+    display: flex;
+    margin: 1rem 0rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.price-qnt button {
+    padding: .4rem;
+    border-radius: 5px;
+    border: 1px solid var(--outGray);
+    background-color: transparent;
+    align-items: center;
+    vertical-align: middle;
+    width: 1.7rem;
+    cursor: pointer;
+}
+
+.price-qnt button:hover {
+    border: 1px solid var(--primaryColor);
+}

@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* variaveis */
+:root {
+    --primaryColor: #A40043;
+    --secundaryColor: #CE769A;
+    --terciaryColor: #E0AAC0;
+    --quarteryColor: #EED0DC;
+    --bgColor: #F9EFF3;
+    --outGray: #c5baba;
+    --elvShadow: 0px 4px 0px 0px;
+    --pressShadow: 0 2.5px 0px 0px;
+    --shadowPrimary: #64002a;
+}
+
+/* configuracao pagina */
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+.title {
+    color: var(--primaryColor);
+}
+
+.subtitle {
+    color: var(--primaryColor);
+    font-weight: 400;
+}
+
+.content-text {
+    color: var(--secundaryColor); 
+}
+
+/* header */
+
+header {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding: 2rem 2rem;
+}
+
+.logo a{
+    display: flex;
+    gap: .9rem;
+    text-decoration: none;
+}
+
+.message{
+    display: flex;
+    padding: 16px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: #58151C;
+    border-radius: var(--Radius-radius-default, 6px);
+    border: 1px solid var(--colors-red-red-300, #EA868F);
+    background: var(--colors-red-red-100, #F8D7DA);
+}
+ 
+.message button{
+    border: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+}
+
+
+.sucess{
+    display: flex;
+    padding: 16px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border: 1px solid #20C997;
+    background-color: #D2F4EA;
+    color: #13795B;
+}
+
+
+/* content one */
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 2rem 0rem;
+    gap: 1.9rem;
+}
+
+.user-menu {
+    padding: 2rem;
+    box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.16);
+    border: 1px solid var(--outGray);
+    border-radius: 10px;
+}
+
+.user-info {
+    margin: 1rem 0rem;
+}
+
+.user-info p {
+    margin: .8rem 0rem;
+    color: var(--primaryColor);
+}
+
+.user-info img {
+    width: 116px;
+    height: 116px;
+}
+
+.user-content button {
+    margin-top: 7rem;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0rem;
+    
+}
+
+.logout a {
+    border-radius: 9999px;
+    align-items: center;
+    padding: 10px;
+}
+
+.logout a:hover {
+    background-color: rgba(164, 0, 67, .1);
+}
+
+/* tabela */
+
+table {
+    margin-top: 4rem;
+    border-collapse: collapse;
+}
+
+.title-info {
+    text-align: left;
+    font-weight: 800;
+    border-top: 1.5px solid var(--outGray);
+    padding: 10px;
+    color: var(--primaryColor);
+}
+
+.info-user {
+    text-align: right;
+    font-weight: 400;
+    border-top: 1.5px solid var(--outGray);
+    padding: 10px;
+    color: rgb(133, 104, 121);
+}
+
+.btn{
+    padding: 9px 16px;
+    background-color: var(--primaryColor);
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-size: 12pt;
+    cursor: pointer;
+    width: 100%;
+    margin: 1rem 0rem 1rem 0rem;
+    box-shadow: var(--pressShadow) var(--shadowPrimary);
+}
+
+.btn:hover {
+    border:1px solid var(--outGray);
+    background: transparent;
+    color: var(--primaryColor);
+    box-shadow: var(--elvShadow) var(--outGray);
+    transition: .2s all;
+    outline: none;
+}
+
+.btn:active {
+    border:1px solid var(--outGray);
+    box-shadow: var(--pressShadow) var(--outGray);
+    transition: .2s all;
+}
+
+/* cards */
+
+.tab-cards {
+    display: block;
+    padding: 0rem;
+}
+
+.card {
+    border-radius: 8px;
+    border: 1px solid var(--outGray);
+    box-shadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.16);
+    padding: 1.4rem;
+    display: flex;
+    width: 38rem;
+    height: 14rem;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    border: 1px solid var(--primaryColor);
+    outline: 3px solid rgba(201, 1, 81, 0.5);
+    box-shadow: 0px 15px 35px 0px rgba(201, 1, 81, 0.16);
+}
+
+.text-card {
+    margin-left: 2rem;
+    text-align: left;
+}
+
+.text-card h1 {
+    font-size: 18pt;
+    color: var(--primaryColor);
+}
+
+.text-card p {
+    margin-top: .5rem;
+    font-size: 12pt;
+    color: var(--secundaryColor);
+}
+
+.text-card button {
+    margin-top: 3rem;
+    width: 12rem;
+}
+
+.background {
+    width: 248px;
+    height: 183px;
+    margin: 0rem 1rem;
+}
+
+#back-one {
+    background: url(assets/card-img-one.svg) no-repeat top/cover; 
+}
+
+#back-two {
+    background: url(assets/card-img-two.svg) no-repeat top/cover; 
+}
+
+#back-three {
+    background: url(assets/card-img-three.svg) no-repeat top/cover; 
+}
