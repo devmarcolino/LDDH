@@ -1,5 +1,38 @@
 <?php
 session_start();
+
+include('./config.php');
+
+function calcularTotalCarrinho() {
+    $total = 0;
+    if (isset($_SESSION['carrinho'])) {
+        foreach ($_SESSION['carrinho'] as $produto) {
+            $preco = (float) preg_replace('/[^0-9.]/', '', $produto['preco']);
+            $quantidade = (int) $produto['quantidade'];
+
+            // Ajuste de valores em centavos (ex.: 1424 se tornará 14.24)
+            if ($preco >= 1000) {
+                $preco = $preco / 100;
+            }
+
+            $total += $preco * $quantidade;
+        }
+        }
+    return $total;
+}
+
+    $idUser = $_SESSION['idUser'];
+
+    $query = mysqli_query($conexao,"SELECT*FROM userstbl WHERE idUser='$idUser'");
+
+
+    while($result = mysqli_fetch_assoc($query)){
+        $res_name = $result['name'];
+        $res_user = $result['user'];
+        $res_email = $result['email'];
+        $res_tel = $result['tel'];
+        $res_id = $result['idUser'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +58,7 @@ session_start();
                 }
 
                 foreach ($_SESSION['carrinho'] as $produto) {
-
+                    
                     echo "
                     <div class='cart-item'>
                         <img width='104px' height='104px' src='". $produto['img'] ."'>
@@ -34,18 +67,23 @@ session_start();
                                 <div class='price-qnt'>
                                     <p class='item-price'>" . $produto['preco'] . "</p>
 
-                                    <button>-</button><p class='item-qnt'>" . $produto['quantidade'] . "</p> <button>+</button>
+                                    <a href='updateCart.php?id=". $produto['id']. "&action=subtract'>-</a>
+                                        <p class='item-qnt'>". $produto['quantidade']. "</p>
+                                    <a href='updateCart.php?id=". $produto['id'] ."&action=add'>+</a>
                                 </div>
                             <a class='btn' id='btn-prod' href='delCart.php?id=" . $produto['id'] . "'>Remover do Carrinho</a>
                         </div>
                     </div>";    
+
+                    $totalItens = +$produto['quantidade'];
                 }
 
             ?>
         </div>
 
         <div class="cart-info">
-           
+            <p>Você tem 2 itens no carrinho.</p>
+            <p>R$<?php echo calcularTotalCarrinho() ?></p>
         </div>
     </div>
 </body>

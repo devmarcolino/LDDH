@@ -71,9 +71,11 @@ header {
     border-radius: 12px;
     width: 25rem;
     justify-content: center;
+    margin-top: 1.5rem;
 
     img {
         margin-right: 2rem;
+        border-radius: 8px;
     }
 }
 
@@ -81,6 +83,7 @@ header {
     background-color: var(--bgColor);
     border-radius: 12px;
     padding: 2rem;
+    margin-top: 1.5rem;
 }
 
 .item-name {
@@ -94,6 +97,11 @@ header {
     font-size: 13pt;
 }
 
+.item-qnt {
+    color: var(--primaryColor);
+    font-weight: bold;
+}
+
 .btn{
     padding: 9px 16px;
     background-color: var(--primaryColor);
@@ -102,8 +110,8 @@ header {
     border: none;
     font-size: 12pt;
     cursor: pointer;
-    width: 9rem;
-    margin: 2rem 0rem 1rem 0rem;
+    width: 100%;
+    margin: 2rem 0rem;
     box-shadow: var(--pressShadow) var(--shadowPrimary);
     text-decoration: none;
 }
@@ -129,6 +137,7 @@ header {
     border-radius: 8px;
     border: 1px solid var(--outGray);
     font-weight: 300;
+    margin: 2rem 0rem;
     box-shadow: var(--pressShadow) var(--outGray);
 }
 
@@ -150,17 +159,23 @@ header {
     align-items: center;
 }
 
-.price-qnt button {
-    padding: .4rem;
+.price-qnt a {
+    padding: .6rem;
     border-radius: 5px;
+    text-decoration: none;
     border: 1px solid var(--outGray);
     background-color: transparent;
     align-items: center;
     vertical-align: middle;
     width: 1.7rem;
+    height: 1.7rem;
+    color: black;
     cursor: pointer;
+    justify-content: center;
+    display: flex;
+    transition: .1s all;
 }
 
-.price-qnt button:hover {
+.price-qnt a:hover {
     border: 1px solid var(--primaryColor);
 }
