@@ -1,13 +1,13 @@
 <?php 
    session_start();
 
-   include("config.php");
+   include("../config.php");
    if(!isset($_SESSION['valid'])){
-    header("Location: login.php");
+    header("Location: ../login/");
    }
 
             $idUser = $_SESSION['idUser'];
-            $idProd = $_POST['idProd'];
+            $idProd = $_GET['idProd'];
 
             $query = mysqli_query($conexao,"SELECT*FROM userstbl WHERE idUser='$idUser'");
             $query_prod = mysqli_query($conexao,"SELECT*FROM prodstbl WHERE idProd='$idProd'");
@@ -38,22 +38,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $prodName ?> | LDDH</title>
-    <link rel="stylesheet" href="./styles/style-product.css">
-    <link rel="shortcut icon" href="./styles/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/style-product.css">
+    <link rel="stylesheet" href="../config.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <header>
         <div class="logo">
-            <a href="./home.php"><img src="styles/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
+            <a href="./home.php"><img src="../assets/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
         </div>
         <nav>
             <div class="nav-list">
             <ul>
-                <li class="nav-item"><a href="./home.php#search-content">Ínicio</a></li>
-                <li class="nav-item"><a href="./home.php#content-four">Produtos</a></li>
-                <li class="nav-item"><a href="./home.php#content-two">Avaliação</a></li>
-                <li class="nav-item"><a href="./home.php#contact-us">Contato</a></li>
-                <li class="nav-item"><a href="./home.php#location">Localização</a></li>
+                <li class="nav-item"><a href="../home/#search-content">Ínicio</a></li>
+                <li class="nav-item"><a href="../home/#content-four">Produtos</a></li>
+                <li class="nav-item"><a href="../home/#content-two">Avaliação</a></li>
+                <li class="nav-item"><a href="../home/#contact-us">Contato</a></li>
+                <li class="nav-item"><a href="../home/#location">Localização</a></li>
 
 
                 <?php 
@@ -62,12 +63,12 @@
             ?>
                
                <li class='user-item'>
-                    <a href='user.php?idUser=<?php echo $res_id ?>' target='_blank' class='btn-register'>
-                        <img src='./styles/assets/Generic avatar.svg'>
+               <a href='../user/?idUser=<?php echo $res_id ?>' target='_blank' class='btn-primary'>
+                        <img src='../assets/Generic avatar.svg'>
 
                          @<?php echo $res_user ?> 
                          
-                        <img src='./styles/assets/Arrow Right.svg'>
+                        <img src='../assets/Arrow Right.svg'>
                     </a>
                 </li>
             </ul>
@@ -159,7 +160,7 @@
   </div>
   <footer>
         <div class="logo-footer">
-        <a href=""><img src="styles/assets/logo.png" alt=""><h1 class="title" id="title-footer">Les Délices d'Héliopolis</h1></a>
+        <a href=""><img src="../assets/logo.png" alt=""><h1 class="title" id="title-footer">Les Délices d'Héliopolis</h1></a>
 
         <p class="content-text" id="endereco">Est. das Lagrimas Nº 78 - Heliópolis</p>
         <p class="content-text" id="footer-text">LDD'H S.A. &copy; 2024 - Todos os direitos reservados</p>
@@ -169,13 +170,13 @@
 
         <div class="social-list">
             <ul>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Twitter.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/YouTube.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Instagram.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/LinkedIn.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/Twitter.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/YouTube.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/Instagram.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/LinkedIn.svg" alt=""></a></button></li>
             </ul>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

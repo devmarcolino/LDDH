@@ -1,6 +1,6 @@
 <?php
 session_start();
-include './config.php'; // Inclui sua conexão com o banco de dados
+include '../config.php'; // Inclui sua conexão com o banco de dados
 
 // Obtém o ID do produto pela URL e converte para inteiro
 $id = intval($_POST['idProd']); // Converte para inteiro para evitar problemas
@@ -26,11 +26,11 @@ if ($id > 0) {
                 'nome' => $produto['nomeProd'],
                 'img' => $produto['imgProd'],
                 'preco' => $produto['precoProd'],
-                'quantidade' => isset($_SESSION['carrinho'][$id]) ? $_SESSION['carrinho'][$id]['quantidade'] + 1 : 1
+                'quantidade' => isset($_SESSION['carrinho'][$id]) ? $_SESSION['carrinho'][$id]['quantidade'] + $_POST['qnt'] : $_POST['qnt']
             ];
 
             // Redireciona para a página do carrinho
-            header("Location: carrinho.php");
+            header("Location: ../cart/");
         } else {
             echo "Produto não encontrado.";
         }

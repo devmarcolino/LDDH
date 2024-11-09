@@ -1,9 +1,9 @@
 <?php 
    session_start();
 
-   include("config.php");
+   include("../config.php");
    if(!isset($_SESSION['valid'])){
-    header("Location: login.php");
+    header("Location: ../login/");
    }
 
    $idUser = $_SESSION['idUser'];
@@ -26,16 +26,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LDD'H</title>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/style-laptop.css">
-    <link rel="stylesheet" href="./styles/style-responsive.css">
-    <link rel="shortcut icon" href="./styles/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../config.css">
+    <link rel="stylesheet" href="../styles/style-responsive.css">
+    <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Cabeçalho atualização 09/10-->
     <header>
         <div class="logo">
-            <a href=""><img src="styles/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
+            <a href=""><img src="../assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
         </div>
         <nav>
             <div class="nav-list">
@@ -45,20 +45,14 @@
                 <li class="nav-item"><a href="#content-two">Avaliação</a></li>
                 <li class="nav-item"><a href="#contact-us">Contato</a></li>
                 <li class="nav-item"><a href="#location">Localização</a></li>
-
-
-                <?php 
-            
-            
-            ?>
                
                <li class='user-item'>
-                    <a href='user.php?idUser=<?php echo $res_id ?>' target='_blank' class='btn-register'>
-                        <img src='./styles/assets/Generic avatar.svg'>
+                    <a href='../user/?idUser=<?php echo $res_id ?>' target='_blank' class='btn-primary'>
+                        <img src='../assets/Generic avatar.svg'>
 
                          @<?php echo $res_user ?> 
                          
-                        <img src='./styles/assets/Arrow Right.svg'>
+                        <img src='../assets/Arrow Right.svg'>
                     </a>
                 </li>
             </ul>
@@ -66,7 +60,7 @@
             
 
             <div class="mobile-menu-icon">
-                <button onclick="showMenu()" id="menu-icon"><img src="./styles/assets/menu.svg"></button>
+                <button onclick="showMenu()" id="menu-icon"><img src="../assets/menu.svg"></button>
             </div>
         </div>
         </nav>
@@ -87,12 +81,12 @@
             ?>
                
                <li class='user-item'>
-                    <a href='user.php?idUser=<?php echo $res_id ?>' target='_blank' class='btn-register'>
-                        <img src='./styles/assets/Generic avatar.svg'>
+                    <a href='../user/?idUser=<?php echo $res_id ?>' target='_blank' class='btn-register'>
+                        <img src='../assets/Generic avatar.svg'>
 
                          @<?php echo $res_user ?> 
                          
-                        <img src='./styles/assets/Arrow Right.svg'>
+                        <img src='../assets/Arrow Right.svg'>
                     </a>
                 </li>
             </ul>
@@ -114,9 +108,8 @@
         <p class="content-text">
             Pesquise seus vinhos favoritos da LDD’H ou outros vinhos ou bebidas exclusivas!
         </p>
-        <div class="input-search">
-        <img src="./styles/assets/Search.svg" class="search-icon"><input type="search" name="search" id="search" action="produtos.php" placeholder="Pesquise seus produtos LDD'H favoritos!">
-        </div>
+
+        <input type="search" name="search" id="search" placeholder="Pesquise seus produtos">
     </div>
         
     </main>
@@ -137,66 +130,65 @@
         
         <div class="prods">
         <div id="lddh" class="cat">
-                <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
+            <?php
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'LDDH'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                  <form action='product.php?nomeProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
             </div>
 
             <div id="ex" class="cat">
-                <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
+            <?php
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Exclusivo'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
@@ -204,32 +196,32 @@
 
             <div id="whisky" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Whisky'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+               
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+                   
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action'../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
@@ -237,60 +229,60 @@
 
             <div id="champ" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Champagne'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+                
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+                    
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../product/?idProd=" .$row["idProd"]. "%?nomeProd=" . $row['nomeProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
             </div>
-        
+        </div>
+        <a href="../products/" target="_blank" class="btn-secundary" id="btn-prod"><button>Ver mais produtos</button></a>
            </div>
 
-           <a href="./produtos.php" target="_blank" class="btn" id="btn-more"><button>Ver mais produtos</button></a>
     </main>
 
 
     <main id="content-two">
 
         <div class="rate" id="rate-one">
-            <img src="styles/assets/user-one.svg" div="img-rate" alt="avatar">
+            <img src="../assets/user-one.svg" div="img-rate" alt="avatar">
             <div class="text-rate">
             <p class="rate-text">
                 “Que lugar incrível! Vinhos com gostos únicos!”
             </p>
             <p class="rate-user">Henrique</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="../assets/Star.svg" alt="">
         </div>
         </div>
 
         <div class="rate" id="rate-two">
             <div class="rate-text">
-            <img src="styles/assets/user-two.svg" div="img-rate" alt="avatar">
+            <img src="../assets/user-two.svg" div="img-rate" alt="avatar">
         </div>
             <div class="text-rate">
             <p class="rate-text">
@@ -298,19 +290,19 @@
             </p>
             <p class="rate-user">Eduardo</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="../assets/Star.svg" alt="">
             </div>
         </div>
 
         <div class="rate" id="rate-three">
-            <img src="./styles/assets/user-three.svg" div="img-rate" alt="avatar">
+            <img src="../assets/user-three.svg" div="img-rate" alt="avatar">
             <div class="text-rate">
             <p class="rate-text">
                 “Irei voltar e levar todos os vinhos, incríveis!”
             </p>
             <p class="rate-user">Lucas Andrade</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="../assets/Star.svg" alt="">
         </div>
         </div>
     </main>
@@ -322,15 +314,10 @@
         </div>
 
         <div class="contact-content">
-            <img src="./styles/assets/contact.svg" alt="">
+            <img src="../assets/contact.svg" alt="">
 
             <div class="contact-form">
             <?php
-
-                include_once('config.php');
-
-
-
                 if (isset($_POST['submit']))
                 {
 
@@ -342,12 +329,12 @@
                         VALUES ('$name', '$tel', '$msg')"); 
 
                     echo "<div class='sucess'>
-                    <img src='./styles/assets/warn-sucess.svg'><p>Enviado com sucesso!</p>
+                    <img src='../assets/warn-sucess.svg'><p>Enviado com sucesso!</p>
                     </div> <br>";
                 }
 
                 ?>
-                <form action="./home.php/#contact-us" method="post">
+                <form action="" method="post">
                     <label for="name" class="title-input">Nome</label>
                     <input type="text" name="name" id="name" placeholder="Nome" value="<?php echo $res_name ?> " required disabled>
     
@@ -385,7 +372,7 @@
 
     <footer>
         <div class="logo-footer">
-        <a href=""><img src="styles/assets/logo.png" alt=""><h1 class="title" id="title-footer">Les Délices d'Héliopolis</h1></a>
+        <a href=""><img src="../assets/logo.png" alt=""><h1 class="title" id="title-footer">Les Délices d'Héliopolis</h1></a>
 
         <p class="content-text" id="endereco">Est. das Lagrimas Nº 78 - Heliópolis</p>
         <p class="content-text" id="footer-text">LDD'H S.A. &copy; 2024 - Todos os direitos reservados</p>
@@ -395,13 +382,13 @@
 
         <div class="social-list">
             <ul>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Twitter.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/YouTube.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Instagram.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/LinkedIn.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/Twitter.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/YouTube.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/Instagram.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="../assets/LinkedIn.svg" alt=""></a></button></li>
             </ul>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

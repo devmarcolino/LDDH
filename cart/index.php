@@ -1,25 +1,30 @@
 <?php
 session_start();
 
-include('./config.php');
+include('../config.php');
+
+$quantidadeProdutos = isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0;
 
 function calcularTotalCarrinho() {
     $total = 0;
     if (isset($_SESSION['carrinho'])) {
         foreach ($_SESSION['carrinho'] as $produto) {
-            $preco = (float) preg_replace('/[^0-9.]/', '', $produto['preco']);
+            $precoOriginal = $produto['preco'];
             $quantidade = (int) $produto['quantidade'];
 
-            // Ajuste de valores em centavos (ex.: 1424 se tornará 14.24)
-            if ($preco >= 1000) {
-                $preco = $preco / 100;
-            }
+            $precoLimpo = preg_replace('/[R$\s.]/', '', $precoOriginal);
+            $precoLimpo = str_replace(' ','', $precoLimpo);
+            $precoLimpo = str_replace(',', '.', $precoLimpo);
+            
+            $precoFloat = (float)$precoLimpo;
 
-            $total += $preco * $quantidade;
+            $total += $precoFloat * $quantidade;
         }
         }
     return $total;
 }
+
+    $totalFinal = calcularTotalCarrinho() + 5.40;
 
     $idUser = $_SESSION['idUser'];
 
@@ -41,12 +46,13 @@ function calcularTotalCarrinho() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho | LDDH - @<?php echo $res_user ?></title>
-    <link rel="stylesheet" href="./styles/style-cart.css">
+    <link rel="stylesheet" href="../styles/style-cart.css">
+    <link rel="stylesheet" href="../config.css">
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="./index.php"><img src="./styles/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
+            <a href="../home/"><img src="../assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
         </div>
     </header>
     <div class="content">
@@ -71,7 +77,7 @@ function calcularTotalCarrinho() {
                                         <p class='item-qnt'>". $produto['quantidade']. "</p>
                                     <a href='updateCart.php?id=". $produto['id'] ."&action=add'>+</a>
                                 </div>
-                            <a class='btn' id='btn-prod' href='delCart.php?id=" . $produto['id'] . "'>Remover do Carrinho</a>
+                            <a class='btn-secundary' id='btn-prod' href='delCart.php?id=" . $produto['id'] . "'><button id='item-btn'>Remover do Carrinho</button></a>
                         </div>
                     </div>";    
 
@@ -82,8 +88,40 @@ function calcularTotalCarrinho() {
         </div>
 
         <div class="cart-info">
-            <p>Você tem 2 itens no carrinho.</p>
-            <p>R$<?php echo calcularTotalCarrinho() ?></p>
+            <p>Você tem <span><?php echo $quantidadeProdutos ?> itens</span> no carrinho.</p>
+
+            <table>
+                <tr>
+                    <td class="tb-text">
+                        Subotal
+                    </td>
+
+                    <td class="tb-value">
+                    <?php echo "R$" . number_format(calcularTotalCarrinho(),2,",",".")  ?>
+                    </td>
+                </tr>    
+
+                <tr>
+                    <td class="tb-text">
+                        Frete
+                    </td>
+
+                    <td class="tb-value">
+                    R$5,40
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb-text">
+                        Total
+                    </td>
+
+                    <td class="tb-value">
+                    <?php echo "R$" . number_format($totalFinal,2,",",".")  ?>
+                    </td>
+                </tr>
+            </table>
+
+            <a href="" class="btn-primary"><button id="btn-buy">Concluir Compra</button></a>
         </div>
     </div>
 </body>

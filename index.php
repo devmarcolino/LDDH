@@ -1,5 +1,5 @@
 <?php 
-include("config.php");
+include("./config.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,16 +7,16 @@ include("config.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LDD'H</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/style-responsive.css">
-    <link rel="stylesheet" href="./styles/style-laptop.css">
-    <link rel="shortcut icon" href="./styles/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./config.css">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Cabeçalho atualização 09/10-->
     <header>
         <div class="logo">
-            <a href=""><img src="styles/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
+            <a href=""><img src="./assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
         </div>
         <nav>
             <div class="nav-list">
@@ -26,7 +26,7 @@ include("config.php");
                 <li class="nav-item"><a href="#content-four">Produtos</a></li>
                 <li class="nav-item"><a href="#contact-us">Contato</a></li>
                 <li class="nav-item"><a href="#location">Localização</a></li>
-                <li class="nav-item-a"><a href="./register.php" target="_blank" class="btn-register">Cadastre-se</a></li>
+                <li class="nav-item-a"><a href="./register/" target="_blank" class="btn-primary" id="btn-reg">Cadastre-se</a></li>
             </ul>
 
             
@@ -45,7 +45,7 @@ include("config.php");
                     <li class="nav-item"><a href="#content-four">Produtos</a></li>
                     <li class="nav-item"><a href="#contact-us">Contato</a></li>
                     <li class="nav-item"><a href="#location">Localização</a></li>
-                    <a href="./register.php" target="_blank" class="btn"><button id="btn-mobile">Cadastre-se</button></a>
+                    <a href="./register/" target="_blank" class="btn-primary"><button id="btn-mobile">Cadastre-se</button></a>
                 </ul>
         </div>
         </div>
@@ -69,29 +69,29 @@ include("config.php");
             Bem-vindo à Les Delices d'Héliopolis, onde<wbr> cada taça revela a essência dos nossos<wbr> vinhos e a paixão pela arte de vinificar, e<wbr> tudo isso com o brilho do sol.
         </p>
         
-        <a href="register.php" target="_blank" class="btn"><button>Cadastre-se</button></a>
-        <a href="#content-four" class="btn" id="btn-prod"><button>Ver variedades</button></a>
+        <a href="./register/" target="_blank" class="btn-primary" id="btn-home-one"><button>Cadastre-se</button></a>
+        <a href="#content-four" class="btn-secundary" id="btn-home-two"><button>Ver variedades</button></a>
     </div>
-        <img src="styles/assets/wine-woman.svg" alt="">
+        <img src="./assets/wine-woman.svg" alt="">
     </main>
 
     <main id="content-two">
 
         <div class="rate" id="rate-one">
-            <img src="styles/assets/user-one.svg" div="img-rate" alt="avatar">
+            <img src="./assets/user-one.svg" div="img-rate" alt="avatar">
             <div class="text-rate">
             <p class="rate-text">
                 “Que lugar incrível! Vinhos com gostos únicos!”
             </p>
             <p class="rate-user">Henrique</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="./assets/Star.svg" alt="">
         </div>
         </div>
 
         <div class="rate" id="rate-two">
             <div class="rate-text">
-            <img src="styles/assets/user-two.svg" div="img-rate" alt="avatar">
+            <img src="./assets/user-two.svg" div="img-rate" alt="avatar">
         </div>
             <div class="text-rate">
             <p class="rate-text">
@@ -99,19 +99,19 @@ include("config.php");
             </p>
             <p class="rate-user">Eduardo</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="./assets/Star.svg" alt="">
             </div>
         </div>
 
         <div class="rate" id="rate-three">
-            <img src="./styles/assets/user-three.svg" div="img-rate" alt="avatar">
+            <img src="./assets/user-three.svg" div="img-rate" alt="avatar">
             <div class="text-rate">
             <p class="rate-text">
                 “Irei voltar e levar todos os vinhos, incríveis!”
             </p>
             <p class="rate-user">Lucas Andrade</p>
 
-            <img src="styles/assets/Star.svg" alt="">
+            <img src="./assets/Star.svg" alt="">
         </div>
         </div>
     </main>
@@ -119,7 +119,7 @@ include("config.php");
     <main id="content-three">
         <h1 class="title">O que temos de diferente?</h1>
 
-        <img src="styles/assets/wines.jpg" alt="" class="vine-img">
+        <img src="./assets/wines.jpg" alt="" class="vine-img">
 
         <div class="group-text">
             <div id="group-text-one">
@@ -155,32 +155,32 @@ include("config.php");
         <div class="prods">
             <div id="lddh" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'LDDH'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
@@ -188,32 +188,31 @@ include("config.php");
 
             <div id="ex" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Exclusivo'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
@@ -221,32 +220,32 @@ include("config.php");
 
             <div id="whisky" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Whisky'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+               
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+                   
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
@@ -254,38 +253,38 @@ include("config.php");
 
             <div id="champ" class="cat">
             <?php
-                include_once("./config.php");
-                // Query para selecionar produtos únicos (DISTINCT)
                 $sql = "SELECT DISTINCT idProd, nomeProd, precoProd, descProd, imgProd, catProd FROM prodstbl WHERE catProd = 'Champagne'";
                 $result = $conexao->query($sql);
 
-                // Verificar se existem resultados
+                
                 if ($result->num_rows > 0) {
-                    // Iterar pelos produtos e exibir
+                    
                     while($row = $result->fetch_assoc()) {
-                        echo "<div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
-                                <div class='title-prod'>
-                                    <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                        echo "<a class='box-link' href='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "'>
+                            <div class='prod-item' style='background: url(" .$row["imgProd"]. ") no-repeat top/cover;' id='prod-item-one'>
+                                    <div class='title-prod'>
+                                        <h3 class='prod-name'>" .$row["nomeProd"]. "</h3>
+                                    </div>
+                                <div class='buy'>
+                                    <p class='prod-price'>" .$row["precoProd"]. "</p>
+                
+                                    <form action='../lddh/product/?nameProd=" .$row["nomeProd"]. "%?idProd=" . $row['idProd'] . "' method='post'>
+                                        <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
+                                        <input type='submit' class='btn-buy' value='Comprar'>
+                                    </form>
+                                    </div>
                                 </div>
-                            <div class='buy'>
-                                <p class='prod-price'>" .$row["precoProd"]. "</p>
-            
-                                <form action='product.php?nameProd=" .$row["nomeProd"]. "' method='post'>
-                                    <input type='hidden' id='idProd' name='idProd' value='" . $row['idProd'] . "'>
-                                    <input type='submit' class='btn-buy' value='Comprar'>
-                                </form>
-                                </div>
-                            </div> ";
+                                </a> ";
                     }
                 } else {
                     echo "<div class='message'>
-                       <img src='./styles/assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
+                       <img src='./assets/warn-error.svg'><p>Nenhum produto encontrado.</p>
                   </div> <br>";
                 }
                 ?>
             </div>
         </div>
-        <a href="./login.php" target="_blank" class="btn" id="btn-more"><button>Ver mais produtos</button></a>
+        <a href="./login/" target="_blank" class="btn-secundary"><button>Ver mais produtos</button></a>
            </div>
     </main>
 
@@ -296,15 +295,10 @@ include("config.php");
         </div>
 
         <div class="contact-content">
-            <img src="./styles/assets/contact.svg" alt="">
+            <img src="./assets/contact.svg" alt="">
 
             <div class="contact-form">
             <?php
-
-                include_once('config.php');
-
-                
-
                 if (isset($_POST['submit']))
                 {
 
@@ -316,7 +310,7 @@ include("config.php");
                         VALUES ('$name', '$tel', '$msg')"); 
 
                     echo "<div class='sucess'>
-                    <img src='./styles/assets/warn-sucess.svg'><p>Enviado com sucesso!</p>
+                    <img src='./assets/warn-sucess.svg'><p>Enviado com sucesso!</p>
                     </div> <br>";
                 }
 
@@ -332,7 +326,7 @@ include("config.php");
                     <textarea type="text" name="text" id="text" placeholder="Insira sua mensagem aqui" required></textarea>
                     <label for="text" class="p-input">Essa mensagem será encaminhada a equipe LDD’H S.A.</label>
     
-                    <input type="submit" name="submit" id="submit" value="Enviar" class="btn">    
+                    <input type="submit" name="submit" id="submit" value="Enviar" class="btn-primary">    
                 </form>
             </div>
         </div>
@@ -372,10 +366,10 @@ include("config.php");
 
         <div class="social-list">
             <ul>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Twitter.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/YouTube.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/Instagram.svg" alt=""></a></button></li>
-                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="styles/assets/LinkedIn.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="./assets/Twitter.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="./assets/YouTube.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="./assets/Instagram.svg" alt=""></a></button></li>
+                <li class="social-item"><a href="http://" target="_blank"><button class="btn-social"><img src="./assets/LinkedIn.svg" alt=""></a></button></li>
             </ul>
         </div>
     </footer>

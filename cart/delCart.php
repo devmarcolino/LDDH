@@ -11,6 +11,6 @@ if (isset($_SESSION['carrinho'][$id])) {
 }
 
 // Redireciona de volta para a página do carrinho
-header("Location: carrinho.php");
+header("Location: index.php");
 exit;
 ?>

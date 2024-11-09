@@ -16,6 +16,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
         }
     }
 }
-header('Location: carrinho.php');
+header('Location: index.php');
 exit;
 ?>

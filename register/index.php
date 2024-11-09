@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LDD'H - Register panel</title>
-    <link rel="stylesheet" href="./styles/style-login.css">
-    <link rel="stylesheet" href="./styles/style-login-responsive.css">
+    <link rel="stylesheet" href="../styles/style-login.css">
+    <link rel="stylesheet" href="../styles/style-login-responsive.css">
+    <link rel="stylesheet" href="../config.css">
 </head>
 <body>
     <!-- Cabeçalho atualização 09/10-->
     <header>
         <div class="logo">
-            <a href="Index.php"><img src="./styles/assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
+            <a href="../"><img src="../assets/logo.png" alt=""><h1 class="title">Les Délices d'Héliopolis</h1></a>
         </div>
     </header>
 
@@ -21,7 +22,7 @@
         <main class="content">
         <?php 
          
-         include("config.php");
+         include("../config.php");
          if(isset($_POST['submit'])){
             $name = $_POST['name'];
             $user = $_POST['user'];
@@ -43,13 +44,13 @@
 
          elseif(mysqli_num_rows($verify_query_user) !=0 ){
             echo "<div class='message'>
-                      <img src='./styles/assets/warn-error.svg'><p>Esse nome de usuário já está em uso, use outro!</p><button onclick='closeWarn()'><img src='./styles/assets/x.svg'></button>
+                      <img src='../assets/warn-error.svg'><p>Esse nome de usuário já está em uso, use outro!</p><button onclick='closeWarn()'><img src='./styles/assets/x.svg'></button>
                   </div> <br>";
          }
 
          elseif(mysqli_num_rows($verify_query_tel) !=0 ) {
             echo "<div class='message'>
-                      <img src='./styles/assets/warn-error.svg'><p>Esse telefone já está em uso, use outro!</p><button onclick='closeWarn()'><img src='./styles/assets/x.svg'></button>
+                      <img src='../assets/warn-error.svg'><p>Esse telefone já está em uso, use outro!</p><button onclick='closeWarn()'><img src='./styles/assets/x.svg'></button>
                   </div> <br>";
          }
          else{
@@ -57,7 +58,7 @@
             mysqli_query($conexao,"INSERT INTO userstbl(name,user,email,tel,password) VALUES('$name','$user','$email','$telefone','$password')") or die("Erroe Occured");
 
             echo "<div class='sucess'>
-                       <img src='./styles/assets/warn-sucess.svg'><p>Registro concluído!</p><button onclick='loginRedc()'><img src='./styles/assets/login.svg'></button>
+                       <img src='../assets/warn-sucess.svg'><p>Registro concluído!</p><button onclick='loginRedc()'><img src='./styles/assets/login.svg'></button>
                   </div> <br>";
          
          }
@@ -88,10 +89,10 @@
 
                 <input type="submit" name="submit" id="submit" value="Registrar" class="btn">
 
-                <a href="login.php">Já tem uma conta? Acessar conta</a>
+                <a href="../login/">Já tem uma conta? Acessar conta</a>
             </form>
         </main>
     </div>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
